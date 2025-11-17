@@ -14,6 +14,42 @@ NC='\033[0m' # No Color
 INSTALLED=0
 SKIPPED=0
 FAILED=0
+BACKED_UP=0
+
+# Function to backup a file by adding .bak extension
+# Usage: backup_file <file_path>
+# Returns: 0 if backup successful or not needed, 1 on failure
+backup_file() {
+    local file_path="$1"
+
+    # If file doesn't exist, no backup needed
+    if [ ! -e "$file_path" ]; then
+        return 0
+    fi
+
+    # If it's already a symlink, no backup needed (we'll just replace it)
+    if [ -L "$file_path" ]; then
+        return 0
+    fi
+
+    # Create backup with .bak extension
+    local backup_path="${file_path}.bak"
+
+    # If backup already exists, add timestamp
+    if [ -e "$backup_path" ]; then
+        local timestamp=$(date +%Y%m%d_%H%M%S)
+        backup_path="${file_path}.bak.${timestamp}"
+    fi
+
+    if cp -p "$file_path" "$backup_path" 2>/dev/null; then
+        echo -e "${BLUE}📦 Backed up: $(basename "$file_path") → $(basename "$backup_path")${NC}"
+        ((BACKED_UP++)) || true
+        return 0
+    else
+        echo -e "${YELLOW}⚠️  Warning: Could not backup $(basename "$file_path")${NC}"
+        return 1
+    fi
+}
 
 # Function to create symlink
 # Usage: create_symlink <source_file> <target_directory> <link_name>
@@ -34,9 +70,10 @@ create_symlink() {
             rm "$target_path"
         fi
     elif [ -e "$target_path" ]; then
-        echo -e "${RED}✗  Failed: ${link_name} (file exists, not a symlink)${NC}"
-        ((FAILED++)) || true
-        return 1
+        # Backup existing file before overwriting
+        backup_file "$target_path"
+        echo -e "${YELLOW}⚠  Removing existing file: ${link_name}${NC}"
+        rm "$target_path"
     fi
 
     # Create symlink
@@ -81,6 +118,9 @@ print_summary() {
     echo ""
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${GREEN}✓  Installed: ${INSTALLED}${NC}"
+    if [ $BACKED_UP -gt 0 ]; then
+        echo -e "${BLUE}📦 Backed up: ${BACKED_UP}${NC}"
+    fi
     if [ $SKIPPED -gt 0 ]; then
         echo -e "${YELLOW}⏭  Skipped:   ${SKIPPED}${NC}"
     fi
@@ -122,4 +162,5 @@ reset_counters() {
     INSTALLED=0
     SKIPPED=0
     FAILED=0
+    BACKED_UP=0
 }

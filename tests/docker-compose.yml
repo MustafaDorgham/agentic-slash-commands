@@ -159,6 +159,12 @@ services:
           echo '✗ Main installer missing overwrite warning'
           exit 1
         fi &&
+        if echo \"$$output\" | grep -q 'We will attempt to backup your existing slash commands'; then
+          echo '✓ Main installer mentions backup functionality'
+        else
+          echo '✗ Main installer missing backup message'
+          exit 1
+        fi &&
         if echo \"$$output\" | grep -q 'Installation cancelled'; then
           echo '✓ Main installer allows cancellation'
         else
@@ -174,6 +180,12 @@ services:
           echo '✗ Claude Code installer missing warning'
           exit 1
         fi &&
+        if echo \"$$output\" | grep -q 'We will attempt to backup'; then
+          echo '✓ Claude Code installer mentions backup'
+        else
+          echo '✗ Claude Code installer missing backup message'
+          exit 1
+        fi &&
         echo '' &&
         echo 'Testing Codex installer warning...' &&
         output=$$(bash scripts/install-codex.sh 2>&1) &&
@@ -181,6 +193,12 @@ services:
           echo '✓ Codex installer shows warning'
         else
           echo '✗ Codex installer missing warning'
+          exit 1
+        fi &&
+        if echo \"$$output\" | grep -q 'We will attempt to backup'; then
+          echo '✓ Codex installer mentions backup'
+        else
+          echo '✗ Codex installer missing backup message'
           exit 1
         fi &&
         echo '' &&
@@ -192,8 +210,111 @@ services:
           echo '✗ Gemini installer missing warning'
           exit 1
         fi &&
+        if echo \"$$output\" | grep -q 'We will attempt to backup'; then
+          echo '✓ Gemini installer mentions backup'
+        else
+          echo '✗ Gemini installer missing backup message'
+          exit 1
+        fi &&
         echo '' &&
         echo '✅ All warning messages are present'
+      "
+
+  # Test backup functionality
+  backup:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    container_name: agentic-backup
+    volumes:
+      - ..:/home/testuser/agentic-slash-commands
+    command: >
+      bash -c "
+        cd /home/testuser/agentic-slash-commands &&
+        echo '=== Testing Backup Functionality ===' &&
+        echo '' &&
+        echo 'Setting up test environment...' &&
+        mkdir -p ~/.claude/commands &&
+        mkdir -p ~/.codex/prompts &&
+        echo '' &&
+        echo '--- Test 1: First backup (should create .bak files) ---' &&
+        echo 'Creating dummy files to be backed up...' &&
+        echo 'custom command 1' > ~/.claude/commands/build.md &&
+        echo 'custom command 2' > ~/.claude/commands/test.md &&
+        echo 'custom command 3' > ~/.codex/prompts/lint.md &&
+        echo '' &&
+        echo 'Running Claude Code installer...' &&
+        output=$$(bash scripts/install-claude.sh 2>&1) &&
+        echo '' &&
+        if [ -f ~/.claude/commands/build.md.bak ]; then
+          echo '✓ First backup created: build.md.bak'
+        else
+          echo '✗ First backup NOT created: build.md.bak'
+          exit 1
+        fi &&
+        if [ -f ~/.claude/commands/test.md.bak ]; then
+          echo '✓ First backup created: test.md.bak'
+        else
+          echo '✗ First backup NOT created: test.md.bak'
+          exit 1
+        fi &&
+        if grep -q 'custom command 1' ~/.claude/commands/build.md.bak; then
+          echo '✓ Backup contains original content'
+        else
+          echo '✗ Backup does NOT contain original content'
+          exit 1
+        fi &&
+        if echo \"$$output\" | grep -q 'Backed up:.*2'; then
+          echo '✓ Summary shows backed up count'
+        else
+          echo '✗ Summary missing backed up count'
+          exit 1
+        fi &&
+        echo '' &&
+        echo '--- Test 2: Second backup (should create timestamped .bak files) ---' &&
+        echo 'Creating new dummy files...' &&
+        rm ~/.claude/commands/build.md &&
+        echo 'custom command UPDATED' > ~/.claude/commands/build.md &&
+        sleep 1 &&
+        echo '' &&
+        echo 'Running installer again...' &&
+        bash scripts/install-claude.sh >/dev/null 2>&1 &&
+        echo '' &&
+        bak_count=$$(ls ~/.claude/commands/build.md.bak* 2>/dev/null | wc -l) &&
+        if [ \"$$bak_count\" -ge 2 ]; then
+          echo \"✓ Multiple backups exist ($$bak_count files)\"
+        else
+          echo \"✗ Second backup NOT created (only $$bak_count file)\"
+          exit 1
+        fi &&
+        timestamped_backup=$$(ls ~/.claude/commands/build.md.bak.* 2>/dev/null | head -1) &&
+        if [ -n \"$$timestamped_backup\" ]; then
+          echo \"✓ Timestamped backup created: $$(basename \"$$timestamped_backup\")\"
+        else
+          echo '✗ No timestamped backup found'
+          exit 1
+        fi &&
+        echo '' &&
+        echo '--- Test 3: Symlinks should NOT be backed up ---' &&
+        bash scripts/install-codex.sh >/dev/null 2>&1 &&
+        bak_count=$$(ls ~/.codex/prompts/lint.md.bak* 2>/dev/null | wc -l) &&
+        if [ \"$$bak_count\" -eq 1 ]; then
+          echo '✓ Original file was backed up once'
+        else
+          echo \"✗ Wrong number of backups (expected 1, got $$bak_count)\"
+          exit 1
+        fi &&
+        echo 'Running installer again (symlink should not be backed up)...' &&
+        output2=$$(bash scripts/install-codex.sh 2>&1) &&
+        bak_count=$$(ls ~/.codex/prompts/lint.md.bak* 2>/dev/null | wc -l) &&
+        if [ \"$$bak_count\" -eq 1 ]; then
+          echo '✓ Symlink NOT backed up (still only 1 backup)'
+        else
+          echo \"✗ Symlink was backed up (expected 1, got $$bak_count)\"
+          exit 1
+        fi &&
+        echo '' &&
+        echo '✅ All backup tests passed'
       "
 
   # Interactive test environment (for manual testing)

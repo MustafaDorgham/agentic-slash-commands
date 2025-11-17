@@ -53,6 +53,7 @@ show_help() {
     echo "  idempotent       Test running installer twice (idempotency)"
     echo "  symlinks         Test symlink integrity"
     echo "  warnings         Test warning messages in all installers"
+    echo "  backup           Test backup functionality (.bak files)"
     echo "  interactive      Start interactive test environment"
     echo ""
     echo "Options:"
@@ -76,7 +77,7 @@ while [[ $# -gt 0 ]]; do
             show_help
             exit 0
             ;;
-        all|claude|codex|universal|idempotent|symlinks|warnings|interactive)
+        all|claude|codex|universal|idempotent|symlinks|warnings|backup|interactive)
             TEST_TARGET="$1"
             shift
             ;;
@@ -106,7 +107,7 @@ case $TEST_TARGET in
         echo -e "${BLUE}Running all tests...${NC}"
         echo ""
 
-        tests=("claude" "codex" "universal" "idempotent" "symlinks" "warnings")
+        tests=("claude" "codex" "universal" "idempotent" "symlinks" "warnings" "backup")
         failed_tests=()
 
         for test in "${tests[@]}"; do
@@ -164,6 +165,10 @@ case $TEST_TARGET in
 
     warnings)
         $COMPOSE_CMD run --rm warnings
+        ;;
+
+    backup)
+        $COMPOSE_CMD run --rm backup
         ;;
 
     interactive)

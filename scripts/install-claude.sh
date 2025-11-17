@@ -25,7 +25,9 @@ echo ""
 
 # Warning about overwriting
 echo -e "${YELLOW}⚠️  WARNING: Existing commands in ${INSTALL_DIR} will be overwritten!${NC}"
-echo -e "${YELLOW}   If you have custom commands, back them up before proceeding.${NC}"
+echo -e "${YELLOW}   We will attempt to backup your existing slash commands before overwriting.${NC}"
+echo -e "${YELLOW}   Backups will be saved with a .bak extension.${NC}"
+echo -e "${YELLOW}   Do note that this is not guaranteed and you should have your own backup.${NC}"
 echo ""
 
 # Reset counters

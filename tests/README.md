@@ -64,9 +64,19 @@ Tests symlink integrity:
 ### `warnings`
 Tests warning messages in all installers:
 - Verifies main installer shows overwrite warning
-- Checks cancellation functionality
-- Validates platform-specific installer warnings
-- Ensures all installers warn about overwriting existing commands
+- Checks backup functionality is mentioned
+- Validates cancellation functionality
+- Ensures all platform-specific installers show warnings
+- Confirms all installers mention backup functionality
+
+### `backup`
+Tests automatic backup functionality:
+- Creates real files in target directories
+- Verifies .bak files are created on first backup
+- Tests timestamped backups on subsequent runs
+- Confirms symlinks are NOT backed up
+- Validates backup counter in installation summary
+- Checks original content is preserved in backups
 
 ### `interactive`
 Starts an interactive bash session:
@@ -92,6 +102,7 @@ Tests:
   idempotent       Test idempotency
   symlinks         Test symlink integrity
   warnings         Test warning messages
+  backup           Test backup functionality
   interactive      Start interactive environment
 ```
 
