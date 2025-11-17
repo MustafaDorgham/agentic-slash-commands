@@ -23,10 +23,10 @@ ask_yes_no() {
     local response
 
     if [ "$default" = "y" ]; then
-        read -p "$(echo -e ${BLUE}${prompt} \(Y/n\):${NC} )" response
+        read -r -p "$(echo -e "${BLUE}${prompt} (Y/n):${NC}")" response
         response=${response:-y}
     else
-        read -p "$(echo -e ${BLUE}${prompt} \(y/N\):${NC} )" response
+        read -r -p "$(echo -e "${BLUE}${prompt} (y/N):${NC}")" response
         response=${response:-n}
     fi
 

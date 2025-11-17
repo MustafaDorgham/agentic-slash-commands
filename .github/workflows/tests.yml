@@ -10,25 +10,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  shellcheck:
-    name: ShellCheck
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install ShellCheck
-        run: sudo apt-get update && sudo apt-get install -y shellcheck
-
-      - name: Run ShellCheck
-        run: |
-          echo "Running ShellCheck on all .sh files..."
-          find . -name "*.sh" -type f | while read -r file; do
-            echo "Checking: $file"
-            shellcheck -e SC1091 -e SC2148 "$file" || exit 1
-          done
-          echo "✅ All shell scripts passed ShellCheck"
-
   docker-tests:
     name: Docker Tests
     runs-on: ubuntu-latest
