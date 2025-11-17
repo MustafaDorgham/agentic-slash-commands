@@ -26,9 +26,6 @@ echo ""
 # Reset counters
 reset_counters
 
-# Clean up old symlinks first
-cleanup_symlinks "$INSTALL_DIR"
-
 # Build list of command files to install
 COMMAND_FILES=()
 if [ ${#SELECTED_COMMANDS[@]} -gt 0 ]; then
