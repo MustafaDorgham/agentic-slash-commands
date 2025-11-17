@@ -1,0 +1,164 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck
+        run: |
+          echo "Running ShellCheck on all .sh files..."
+          find . -name "*.sh" -type f | while read -r file; do
+            echo "Checking: $file"
+            shellcheck -e SC1091 -e SC2148 "$file" || exit 1
+          done
+          echo "✅ All shell scripts passed ShellCheck"
+
+  docker-tests:
+    name: Docker Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run all Docker tests
+        run: |
+          cd test
+          bash run-tests.sh all
+
+  macos-tests:
+    name: macOS Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test Claude Code installation
+        run: |
+          echo "Testing Claude Code installation..."
+          bash scripts/install-claude.sh
+          count=$(ls -la ~/.claude/commands/ | grep -E '^l' | wc -l | xargs)
+          echo "Installed $count symlinks"
+          [ "$count" -gt 0 ] || exit 1
+
+      - name: Test Codex installation
+        run: |
+          echo "Testing Codex installation..."
+          bash scripts/install-codex.sh
+          count=$(ls -la ~/.codex/prompts/ | grep -E '^l' | wc -l | xargs)
+          echo "Installed $count symlinks"
+          [ "$count" -gt 0 ] || exit 1
+
+      - name: Verify symlink integrity
+        run: |
+          echo "Checking Claude Code symlinks..."
+          failed=0
+          for file in ~/.claude/commands/*.md; do
+            if [ -L "$file" ]; then
+              target=$(readlink "$file")
+              if [ ! -f "$target" ]; then
+                echo "❌ Broken symlink: $file -> $target"
+                failed=1
+              else
+                echo "✅ $(basename "$file") -> valid"
+              fi
+            fi
+          done
+
+          echo ""
+          echo "Checking Codex symlinks..."
+          for file in ~/.codex/prompts/*.md; do
+            if [ -L "$file" ]; then
+              target=$(readlink "$file")
+              if [ ! -f "$target" ]; then
+                echo "❌ Broken symlink: $file -> $target"
+                failed=1
+              else
+                echo "✅ $(basename "$file") -> valid"
+              fi
+            fi
+          done
+
+          if [ $failed -eq 1 ]; then
+            echo ""
+            echo "Some symlinks are broken"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All symlinks are valid"
+
+  validate-commands:
+    name: Validate Commands
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check frontmatter
+        run: |
+          echo "Validating command files..."
+          failed=0
+          count=0
+
+          for file in commands/*.md; do
+            if [ -f "$file" ]; then
+              count=$((count + 1))
+              if ! head -n 1 "$file" | grep -q "^---$"; then
+                echo "❌ Missing frontmatter: $(basename $file)"
+                failed=1
+              else
+                echo "✅ Valid: $(basename $file)"
+              fi
+            fi
+          done
+
+          echo ""
+          echo "Checked $count command files"
+
+          if [ $failed -eq 1 ]; then
+            echo "❌ Some command files are missing YAML frontmatter"
+            exit 1
+          fi
+
+          echo "✅ All command files valid"
+
+      - name: Check documentation
+        run: |
+          echo "Checking README.md documentation..."
+          missing=0
+
+          for file in commands/*.md; do
+            if [ -f "$file" ]; then
+              cmd=$(basename "$file" .md)
+              if ! grep -q "/$cmd" README.md; then
+                echo "⚠️  /$cmd not documented in README.md"
+                missing=$((missing + 1))
+              else
+                echo "✅ /$cmd documented"
+              fi
+            fi
+          done
+
+          if [ $missing -gt 0 ]; then
+            echo ""
+            echo "⚠️  $missing command(s) not documented"
+          else
+            echo ""
+            echo "✅ All commands documented"
+          fi
