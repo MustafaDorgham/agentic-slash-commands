@@ -23,6 +23,11 @@ echo -e "${BLUE}From: ${COMMANDS_DIR}${NC}"
 echo -e "${BLUE}To:   ${INSTALL_DIR}${NC}"
 echo ""
 
+# Warning about overwriting
+echo -e "${YELLOW}⚠️  WARNING: Existing commands in ${INSTALL_DIR} will be overwritten!${NC}"
+echo -e "${YELLOW}   If you have custom commands, back them up before proceeding.${NC}"
+echo ""
+
 # Warning about .toml requirement
 echo -e "${YELLOW}⚠️  Note: Gemini CLI requires .toml files${NC}"
 echo -e "${YELLOW}   Current commands are in .md format${NC}"

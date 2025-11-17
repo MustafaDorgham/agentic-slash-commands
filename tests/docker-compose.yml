@@ -138,6 +138,64 @@ services:
         fi
       "
 
+  # Test warning messages
+  warnings:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    container_name: agentic-warnings
+    volumes:
+      - ..:/home/testuser/agentic-slash-commands
+    command: >
+      bash -c "
+        cd /home/testuser/agentic-slash-commands &&
+        echo '=== Testing Warning Messages ===' &&
+        echo '' &&
+        echo 'Testing main installer warning...' &&
+        output=$$(echo 'n' | bash install.sh 2>&1) &&
+        if echo \"$$output\" | grep -q 'WARNING: This installer will overwrite existing commands'; then
+          echo '✓ Main installer shows overwrite warning'
+        else
+          echo '✗ Main installer missing overwrite warning'
+          exit 1
+        fi &&
+        if echo \"$$output\" | grep -q 'Installation cancelled'; then
+          echo '✓ Main installer allows cancellation'
+        else
+          echo '✗ Main installer does not allow cancellation'
+          exit 1
+        fi &&
+        echo '' &&
+        echo 'Testing Claude Code installer warning...' &&
+        output=$$(bash scripts/install-claude.sh 2>&1) &&
+        if echo \"$$output\" | grep -q 'WARNING: Existing commands'; then
+          echo '✓ Claude Code installer shows warning'
+        else
+          echo '✗ Claude Code installer missing warning'
+          exit 1
+        fi &&
+        echo '' &&
+        echo 'Testing Codex installer warning...' &&
+        output=$$(bash scripts/install-codex.sh 2>&1) &&
+        if echo \"$$output\" | grep -q 'WARNING: Existing prompts'; then
+          echo '✓ Codex installer shows warning'
+        else
+          echo '✗ Codex installer missing warning'
+          exit 1
+        fi &&
+        echo '' &&
+        echo 'Testing Gemini installer warning...' &&
+        output=$$(bash scripts/install-gemini.sh 2>&1) &&
+        if echo \"$$output\" | grep -q 'WARNING: Existing commands'; then
+          echo '✓ Gemini installer shows warning'
+        else
+          echo '✗ Gemini installer missing warning'
+          exit 1
+        fi &&
+        echo '' &&
+        echo '✅ All warning messages are present'
+      "
+
   # Interactive test environment (for manual testing)
   interactive:
     build:

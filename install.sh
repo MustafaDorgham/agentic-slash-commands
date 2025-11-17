@@ -16,6 +16,30 @@ echo -e "${BLUE}║  Agentic Slash Commands - Universal Installer ║${NC}"
 echo -e "${BLUE}╚═══════════════════════════════════════════════╝${NC}"
 echo ""
 
+# Display warning about overwriting existing commands
+echo -e "${YELLOW}⚠️  WARNING: This installer will overwrite existing commands!${NC}"
+echo -e "${YELLOW}   Any custom commands or modifications in the target directories will be replaced.${NC}"
+echo -e "${YELLOW}   Target directories:${NC}"
+echo -e "${YELLOW}     • ~/.claude/commands/ (Claude Code)${NC}"
+echo -e "${YELLOW}     • ~/.codex/prompts/ (Codex)${NC}"
+echo -e "${YELLOW}     • ~/.gemini/commands/ (Gemini CLI)${NC}"
+echo ""
+echo -e "${BLUE}💡 Tip: Back up your existing commands if you have customisations.${NC}"
+echo ""
+
+# Ask if user wants to continue
+read -r -p "$(echo -e "${BLUE}Do you want to continue? (y/N):${NC}")" response
+response=${response:-n}
+case "$response" in
+    [yY][eE][sS]|[yY]) ;;
+    *)
+        echo ""
+        echo -e "${YELLOW}Installation cancelled.${NC}"
+        exit 0
+        ;;
+esac
+echo ""
+
 # Helper function to ask yes/no questions
 ask_yes_no() {
     local prompt="$1"

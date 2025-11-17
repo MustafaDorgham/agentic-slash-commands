@@ -61,6 +61,13 @@ Tests symlink integrity:
 - Checks for broken links
 - Validates symlink targets
 
+### `warnings`
+Tests warning messages in all installers:
+- Verifies main installer shows overwrite warning
+- Checks cancellation functionality
+- Validates platform-specific installer warnings
+- Ensures all installers warn about overwriting existing commands
+
 ### `interactive`
 Starts an interactive bash session:
 - Full access to test environment
@@ -84,6 +91,7 @@ Tests:
   universal        Test universal installer
   idempotent       Test idempotency
   symlinks         Test symlink integrity
+  warnings         Test warning messages
   interactive      Start interactive environment
 ```
 

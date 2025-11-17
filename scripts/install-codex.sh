@@ -23,6 +23,11 @@ echo -e "${BLUE}From: ${COMMANDS_DIR}${NC}"
 echo -e "${BLUE}To:   ${INSTALL_DIR}${NC}"
 echo ""
 
+# Warning about overwriting
+echo -e "${YELLOW}⚠️  WARNING: Existing prompts in ${INSTALL_DIR} will be overwritten!${NC}"
+echo -e "${YELLOW}   If you have custom prompts, back them up before proceeding.${NC}"
+echo ""
+
 # Reset counters
 reset_counters
 

@@ -52,6 +52,7 @@ show_help() {
     echo "  universal        Test universal installer (both platforms)"
     echo "  idempotent       Test running installer twice (idempotency)"
     echo "  symlinks         Test symlink integrity"
+    echo "  warnings         Test warning messages in all installers"
     echo "  interactive      Start interactive test environment"
     echo ""
     echo "Options:"
@@ -75,7 +76,7 @@ while [[ $# -gt 0 ]]; do
             show_help
             exit 0
             ;;
-        all|claude|codex|universal|idempotent|symlinks|interactive)
+        all|claude|codex|universal|idempotent|symlinks|warnings|interactive)
             TEST_TARGET="$1"
             shift
             ;;
@@ -105,7 +106,7 @@ case $TEST_TARGET in
         echo -e "${BLUE}Running all tests...${NC}"
         echo ""
 
-        tests=("claude" "codex" "universal" "idempotent" "symlinks")
+        tests=("claude" "codex" "universal" "idempotent" "symlinks" "warnings")
         failed_tests=()
 
         for test in "${tests[@]}"; do
@@ -159,6 +160,10 @@ case $TEST_TARGET in
 
     symlinks)
         $COMPOSE_CMD run --rm symlinks
+        ;;
+
+    warnings)
+        $COMPOSE_CMD run --rm warnings
         ;;
 
     interactive)
