@@ -1,22 +1,38 @@
-# Agentic Slash Commands
+# Agentic Slash Commands 🤖
 
-A collection of intelligent slash commands for AI coding assistants including [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex/), and [Gemini CLI](https://github.com/google-gemini/gemini-cli). Optimised for JavaScript/TypeScript development workflows, each command uses smart detection to identify project configuration and automatically execute appropriate tools with your preferred package manager.
+<div align="center">
 
-**Multi-Platform Support**: Write commands once, use them across Claude Code, Codex, and Gemini CLI with platform-specific installers.
+[![CI Tests](https://img.shields.io/github/actions/workflow/status/ruchernchong/agentic-slash-commands/tests.yml?style=for-the-badge&logo=github&label=Tests)](https://github.com/ruchernchong/agentic-slash-commands/actions)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 
-## Features
+[![Platform](https://img.shields.io/badge/Claude_Code-8B5CF6?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai/code)
+[![Platform](https://img.shields.io/badge/Codex-10A37F?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/codex/)
+[![Platform](https://img.shields.io/badge/Gemini_CLI-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://github.com/google-gemini/gemini-cli)
 
-- **Multi-Platform Support**: Compatible with Claude Code, Codex, and Gemini CLI
-- **Smart Package Manager Detection**: Automatically detects and uses pnpm, bun, yarn, or npm based on lock files
-- **Framework Aware**: Recognises and adapts to React, Vue, Next.js, Nuxt, and more
-- **Zero Configuration**: Works out of the box with standard JavaScript/TypeScript projects
-- **Universal Installation**: One command installs for all supported platforms
-- **Docker-Based Testing**: Comprehensive test suite validates commands across platforms
-- **CI/CD Integration**: Automated testing with GitHub Actions ensures quality
+</div>
 
-## Available Commands
+A collection of intelligent slash commands for AI coding assistants
+including [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex/),
+and [Gemini CLI](https://github.com/google-gemini/gemini-cli). Optimised for JavaScript/TypeScript development
+workflows, each command uses smart detection to identify project configuration and automatically execute appropriate
+tools with your preferred package manager.
 
-### Core Development
+**🚀 Multi-Platform Support**: Write commands once, use them across Claude Code, Codex, and Gemini CLI with
+platform-specific installers.
+
+## ✨ Features
+
+- 🎯 **Multi-Platform Support**: Compatible with Claude Code, Codex, and Gemini CLI
+- 📦 **Smart Package Manager Detection**: Automatically detects and uses pnpm, bun, yarn, or npm based on lock files
+- ⚡ **Framework Aware**: Recognises and adapts to React, Vue, Next.js, Nuxt, and more
+- 🎨 **Zero Configuration**: Works out of the box with standard JavaScript/TypeScript projects
+- 🚀 **Universal Installation**: One command installs for all supported platforms
+- 🐳 **Docker-Based Testing**: Comprehensive test suite validates commands across platforms
+- 🔄 **CI/CD Integration**: Automated testing with GitHub Actions ensures quality
+
+## 📋 Available Commands
+
+### 🛠️ Core Development
 
 - **`/build`** - Intelligent build detection and execution
   - Auto-detects build tools (Webpack, Vite, Rollup, Next.js, etc.)
@@ -34,7 +50,7 @@ A collection of intelligent slash commands for AI coding assistants including [C
   - Intelligent package manager detection
   - Installs both production and development dependencies
 
-### Project Management
+### 📊 Project Management
 
 - **`/clean`** - Safe cleanup of build artefacts
   - Removes node_modules, dist/, build/, .pnpm-store
@@ -60,9 +76,9 @@ A collection of intelligent slash commands for AI coding assistants including [C
   - Updates CLAUDE.md and README.md
   - Keeps documentation in sync
 
-## Installation
+## 💻 Installation
 
-### Universal Installation (All Platforms)
+### 🌐 Universal Installation (All Platforms)
 
 Install commands for Claude Code, Codex, and Gemini CLI in one step:
 
@@ -74,13 +90,14 @@ chmod +x install.sh
 ```
 
 The universal installer will:
+
 - Install commands for **Claude Code** (`$HOME/.claude/commands/`)
 - Install commands for **Codex** (`$HOME/.codex/prompts/`)
 - Install commands for **Gemini CLI** (currently disabled - experimental feature)
 
 Commands will be immediately available globally across all projects.
 
-### Platform-Specific Installation
+### 🎯 Platform-Specific Installation
 
 To install for a specific platform only:
 
@@ -97,7 +114,7 @@ zsh scripts/install-codex.sh
 zsh scripts/install-gemini.sh
 ```
 
-### Updating Commands
+### 🔄 Updating Commands
 
 To update to the latest version across all platforms:
 
@@ -108,11 +125,12 @@ git pull
 
 No need to reinstall - the symlinks will automatically reflect the updates!
 
-## Usage
+## 📖 Usage
 
 Simply type `/` followed by the command name in your AI coding assistant:
 
 **Claude Code:**
+
 ```
 /build
 /test
@@ -121,6 +139,7 @@ Simply type `/` followed by the command name in your AI coding assistant:
 ```
 
 **Codex:**
+
 ```
 /build  (autocompletes to /prompt:build)
 /test   (autocompletes to /prompt:test)
@@ -133,9 +152,9 @@ Note: Codex commands use the `/prompt:` prefix, but typing `/command-name` will 
 **Gemini CLI:**
 Commands work the same way after conversion to .toml format.
 
-## How It Works
+## ⚙️ How It Works
 
-### Package Manager Detection
+### 📦 Package Manager Detection
 
 Commands automatically detect your package manager in this priority order:
 
@@ -144,16 +163,17 @@ Commands automatically detect your package manager in this priority order:
 3. **yarn** (yarn.lock present)
 4. **npm** (package-lock.json present or fallback)
 
-### Smart Execution
+### 🎯 Smart Execution
 
 Each command:
+
 1. Analyses your project configuration (package.json, config files)
 2. Detects the appropriate tool or framework
 3. Selects the best package manager
 4. Executes with optimal settings
 5. Provides actionable feedback
 
-## Command Architecture
+## 🏗️ Command Architecture
 
 Commands are organised in a modular structure supporting multiple platforms:
 
@@ -201,26 +221,27 @@ allowed-tools: List of tools the command can use
 Command instructions and logic here...
 ```
 
-## Configuration
+## ⚙️ Configuration
 
-### Project-Specific Behaviour
+### 🎨 Project-Specific Behaviour
 
 Commands automatically adapt to:
+
 - `package.json` scripts and dependencies
 - Lock file detection (pnpm-lock.yaml, bun.lockb, yarn.lock, package-lock.json)
 - ESLint and Prettier configuration
 - Testing framework configuration
 - Git repository state and GitHub templates
 
-### Local Settings
+### 🔧 Local Settings
 
 Permission management can be configured in `.claude/settings.local.json`.
 
-## Testing
+## 🧪 Testing
 
 This repository includes comprehensive testing infrastructure to ensure command quality across platforms.
 
-### Running Tests
+### ▶️ Running Tests
 
 ```zsh
 cd tests
@@ -228,6 +249,7 @@ cd tests
 ```
 
 The test suite runs:
+
 - **Docker tests**: Validates installation in Alpine Linux containers
 - **macOS tests**: Tests native macOS environment
 - **Command validation**: Checks YAML frontmatter and file formatting
@@ -235,36 +257,39 @@ The test suite runs:
 
 See [`tests/README.md`](tests/README.md) for detailed testing documentation.
 
-## CI/CD
+## 🔄 CI/CD
 
 All code changes are automatically validated through GitHub Actions:
 
-### Automated Workflows
+### 🤖 Automated Workflows
 
 **Location**: `.github/workflows/tests.yml`
 
 **Validation Steps**:
+
 1. **Docker Tests**: Runs full test suite in containerised environment
 2. **macOS Tests**: Validates commands on macOS
 3. **Command Validation**: Checks all command files for proper formatting
 
 **Features**:
+
 - Runs on every push and pull request to `main`
 - Docker layer caching for faster builds
 - Security-hardened with pinned GitHub Actions
 
 This ensures all commands work correctly before merging changes.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please ensure:
+
 - New commands follow the existing architecture pattern
 - Commands include smart detection where applicable
 - YAML frontmatter is properly formatted
 - All tests pass before submitting PR (`cd tests && ./run-tests.sh`)
 - GitHub Actions workflows pass successfully
 
-### Development Workflow
+### 🔨 Development Workflow
 
 1. Fork and clone the repository
 2. Make your changes in the `commands/` directory
@@ -274,10 +299,11 @@ Contributions are welcome! Please ensure:
 
 The CI/CD pipeline will automatically validate your changes.
 
-## License
+## 📄 License
 
 [MIT](LICENSE)
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
-Originally built for [Claude Code](https://claude.ai/code) by Anthropic, now supporting multiple AI coding assistant platforms.
+Originally built for [Claude Code](https://claude.ai/code) by Anthropic, now supporting multiple AI coding assistant
+platforms.
