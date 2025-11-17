@@ -4,11 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a collection of intelligent Claude Code commands optimised for JavaScript/TypeScript development workflows. Each command uses smart detection to identify project configuration and automatically execute appropriate package manager tools (pnpm, bun, yarn, npm) with preference for modern, fast alternatives.
+This is a collection of intelligent agentic slash commands designed for multiple AI platforms (Claude Code, Codex, Gemini CLI). Commands are optimised for JavaScript/TypeScript development workflows and use smart detection to identify project configuration and automatically execute appropriate package manager tools (pnpm, bun, yarn, npm) with preference for modern, fast alternatives.
+
+**Multi-Platform Support**: Commands are written once and can be installed across Claude Code, Codex, and Gemini CLI through platform-specific installers.
 
 ## Installation
 
-This repository is designed to be cloned once and symlinked to `$HOME/.claude/commands/` for global access across all projects:
+This repository is designed to be cloned once and symlinked globally for all supported platforms:
 
 ```bash
 git clone https://github.com/ruchernchong/agentic-slash-commands.git $HOME/agentic-slash-commands
@@ -17,11 +19,32 @@ chmod +x install.sh
 ./install.sh
 ```
 
+The universal installer will set up commands for:
+- **Claude Code**: Symlinks to `$HOME/.claude/commands/`
+- **Codex**: Symlinks to `$HOME/.codex/commands/`
+- **Gemini CLI**: Commands (require conversion to .toml format)
+
+### Platform-Specific Installation
+
+To install for a specific platform only:
+
+```bash
+# Claude Code only
+bash scripts/install-claude.sh
+
+# Codex only
+bash scripts/install-codex.sh
+
+# Gemini CLI only
+bash scripts/install-gemini.sh
+```
+
 ### Benefits of Symlink Approach
-- **One-time setup**: Clone once, use everywhere
+- **One-time setup**: Clone once, use everywhere across all platforms
 - **Easy updates**: Run `git pull` to update all commands instantly
 - **Global availability**: Commands work across all projects
 - **No duplication**: Single source of truth for all command definitions
+- **Multi-platform**: Install once, use with Claude Code, Codex, and Gemini CLI
 
 ### Updating
 ```bash
@@ -60,14 +83,20 @@ This ensures commands integrate seamlessly with any project's established conven
 ## Command Architecture
 
 ### Directory Structure
-Commands are organised in a clean, flat structure:
+Commands are organised in a modular structure:
 ```
 .
 ├── commands/          # All slash command definitions (.md files)
-├── scripts/           # Helper scripts (e.g., commit)
-├── CLAUDE.md          # This file - project guidance
+├── scripts/           # Platform-specific installers and helper scripts
+│   ├── install-claude.sh    # Claude Code installer
+│   ├── install-codex.sh     # Codex installer
+│   ├── install-gemini.sh    # Gemini CLI installer
+│   └── commit               # Git commit helper script
+├── lib/               # Shared utilities and helpers
+│   └── helpers.sh     # Common bash functions for installers
+├── CLAUDE.md          # This file - project guidance for Claude Code
 ├── README.md          # User documentation
-└── install.sh         # Symlink installer for global access
+└── install.sh         # Universal installer for all platforms
 ```
 
 ### Smart Detection System

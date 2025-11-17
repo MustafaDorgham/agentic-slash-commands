@@ -1,12 +1,16 @@
-# Claude Code Commands
+# Agentic Slash Commands
 
-A collection of intelligent slash commands for [Claude Code](https://claude.ai/code) optimised for JavaScript/TypeScript development workflows. Each command uses smart detection to identify project configuration and automatically execute appropriate tools with your preferred package manager.
+A collection of intelligent slash commands for AI coding assistants ([Claude Code](https://claude.ai/code), Codex, Gemini CLI) optimised for JavaScript/TypeScript development workflows. Each command uses smart detection to identify project configuration and automatically execute appropriate tools with your preferred package manager.
+
+**Multi-Platform Support**: Write commands once, use them across Claude Code, Codex, and Gemini CLI with platform-specific installers.
 
 ## Features
 
+- **Multi-Platform Support**: Compatible with Claude Code, Codex, and Gemini CLI
 - **Smart Package Manager Detection**: Automatically detects and uses pnpm, bun, yarn, or npm based on lock files
 - **Framework Aware**: Recognises and adapts to React, Vue, Next.js, Nuxt, and more
 - **Zero Configuration**: Works out of the box with standard JavaScript/TypeScript projects
+- **Universal Installation**: One command installs for all supported platforms
 - **Consistent Conventions**: All documentation and code follows English (Singapore/UK) spelling
 
 ## Available Commands
@@ -57,23 +61,44 @@ A collection of intelligent slash commands for [Claude Code](https://claude.ai/c
 
 ## Installation
 
-1. Clone this repository to a permanent location:
-   ```bash
-   git clone https://github.com/ruchernchong/agentic-slash-commands.git $HOME/agentic-slash-commands
-   ```
+### Universal Installation (All Platforms)
 
-2. Run the installation script to create symlinks:
-   ```bash
-   cd $HOME/agentic-slash-commands
-   chmod +x install.sh
-   ./install.sh
-   ```
+Install commands for Claude Code, Codex, and Gemini CLI in one step:
 
-3. The commands will be immediately available in Claude Code globally across all projects.
+```bash
+git clone https://github.com/ruchernchong/agentic-slash-commands.git $HOME/agentic-slash-commands
+cd $HOME/agentic-slash-commands
+chmod +x install.sh
+./install.sh
+```
+
+The universal installer will:
+- Install commands for **Claude Code** (`$HOME/.claude/commands/`)
+- Install commands for **Codex** (`$HOME/.codex/commands/`)
+- Install commands for **Gemini CLI** (requires conversion to .toml format)
+
+Commands will be immediately available globally across all projects.
+
+### Platform-Specific Installation
+
+To install for a specific platform only:
+
+```bash
+cd $HOME/agentic-slash-commands
+
+# Claude Code only
+bash scripts/install-claude.sh
+
+# Codex only
+bash scripts/install-codex.sh
+
+# Gemini CLI only
+bash scripts/install-gemini.sh
+```
 
 ### Updating Commands
 
-To update to the latest version:
+To update to the latest version across all platforms:
 
 ```bash
 cd $HOME/agentic-slash-commands
@@ -84,14 +109,26 @@ No need to reinstall - the symlinks will automatically reflect the updates!
 
 ## Usage
 
-Simply type `/` followed by the command name in Claude Code:
+Simply type `/` followed by the command name in your AI coding assistant:
 
+**Claude Code:**
 ```
 /build
 /test
 /lint
 /setup
 ```
+
+**Codex:**
+```
+/build
+/test
+/lint
+/setup
+```
+
+**Gemini CLI:**
+Commands work the same way after conversion to .toml format.
 
 ## How It Works
 
@@ -115,19 +152,31 @@ Each command:
 
 ## Command Architecture
 
-Commands are organised in the `commands/` directory and defined using markdown files with YAML frontmatter:
+Commands are organised in a modular structure supporting multiple platforms:
 
 ```
 .
 ├── commands/          # All slash command definitions
 │   ├── build.md
 │   ├── test.md
-│   └── ...
-├── scripts/           # Helper scripts
-│   └── commit
+│   ├── lint.md
+│   ├── setup.md
+│   ├── clean.md
+│   ├── commit.md
+│   ├── create-branch.md
+│   ├── create-issue.md
+│   ├── create-pull-request.md
+│   └── update-docs.md
+├── scripts/           # Platform installers and helper scripts
+│   ├── install-claude.sh    # Claude Code installer
+│   ├── install-codex.sh     # Codex installer
+│   ├── install-gemini.sh    # Gemini CLI installer
+│   └── commit               # Git commit helper script
+├── lib/               # Shared utilities
+│   └── helpers.sh     # Common bash functions for installers
 ├── CLAUDE.md          # Project guidance for Claude Code
-├── README.md
-└── install.sh         # Symlink installer
+├── README.md          # This file
+└── install.sh         # Universal installer for all platforms
 ```
 
 Each command file uses this format:
