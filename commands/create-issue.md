@@ -1,5 +1,5 @@
 ---
-description: Create a GitHub issue with title and description
+description: Create a GitHub issue with title and description (auto-assigned)
 allowed-tools: Bash(gh issue create), Bash(gh issue list), Bash(gh repo view)
 ---
 
@@ -22,8 +22,13 @@ Create a GitHub issue with the following workflow:
 3. **If no ISSUE_TEMPLATE exists, use custom format:**
    - Infer issue title from user's request context
    - Generate appropriate issue description based on the context
-4. Create issue with title and description using `gh issue create`
-5. Optionally add existing labels, assignees, or milestone (only use labels that already exist in the repository)
+4. Create issue with title, description, and auto-assign to current user:
+   - Use `gh issue create --assignee @me` to self-assign the issue
+   - If assignment fails (user not a collaborator), GitHub CLI will create the issue without assignment
+   - This provides convenience for repository collaborators while remaining safe for contributors
+5. Optionally add existing labels or milestone (only use labels that already exist in the repository)
+   - Note: Issue is already auto-assigned to the current user via `--assignee @me` in step 4
+   - Additional assignees can be added using `--assignee` flag (comma-separated for multiple)
 
 For the issue title:
 - Use natural, descriptive language (NOT conventional commits format like "feat:", "fix:", "chore:")
