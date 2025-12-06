@@ -26,7 +26,12 @@ Create a pull request with the following workflow:
 
 **CONCISE PR RULE: Keep everything brief and focused**
 
-Generate a short, clear title based on the commit history and user's request context.
+Generate a title based on the commit history and user's request context.
+
+For the PR title:
+- Use natural, descriptive language (NOT conventional commits format like "feat:", "fix:", "chore:")
+- Make it clear and specific to the changes
+- Keep it concise but informative
 
 For the PR description:
 - **Maximum 1-2 bullet points** summarizing the key changes
