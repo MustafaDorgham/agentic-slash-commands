@@ -68,6 +68,10 @@ platform-specific installers.
   - Template support
   - Pre-filled with project context
 
+- **`/update-issue`** - Update existing GitHub issue
+  - Edit title, body, labels, or assignees
+  - Respects issue templates
+
 - **`/create-pull-request`** - Automated PR creation
   - Analyses commits for description generation
   - Follows repository conventions
@@ -220,6 +224,7 @@ Commands are organised in a modular structure supporting multiple platforms:
 │   ├── create-branch.md
 │   ├── create-issue.md
 │   ├── create-pull-request.md
+│   ├── update-issue.md
 │   └── update-docs.md
 ├── scripts/           # Platform installers and helper scripts
 │   ├── install-claude.sh    # Claude Code installer

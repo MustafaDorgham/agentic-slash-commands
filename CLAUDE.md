@@ -79,6 +79,7 @@ This ensures commands integrate seamlessly with any project's established conven
 - `/create-branch` - Create and checkout new git branch with smart validation and GitHub issue integration
 - `/create-issue` - GitHub issue creation with template support
 - `/create-pull-request` - Automated PR creation with commit analysis
+- `/update-issue` - Update GitHub issue title, body, labels, or assignees
 - `/update-docs` - Documentation maintenance for CLAUDE.md and README.md files
 
 ## Skills Available
