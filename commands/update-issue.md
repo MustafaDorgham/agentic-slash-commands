@@ -16,21 +16,29 @@ Update a GitHub issue with the following workflow:
 
 1. Check if we're in a GitHub repository
 2. **Identify the issue to update:**
-   - If an issue number is provided (e.g., "issue 123", "#456", or "789"), use that issue
-   - Otherwise, ask the user for the issue number
+   - If issue number is provided (e.g., "issue 123", "#456", or "789"), use that issue
+   - If not provided, ask the user for the issue number
 3. **View current issue details:**
-   - Display the issue title, body, labels, assignees, and state
-   - Check for ISSUE_TEMPLATE format in the repository to understand the issue structure
-4. **Determine what to update:**
+   - Use `gh issue view` to display current state
+   - Show title, body, labels, assignees, and state
+   - This helps understand what needs updating
+4. **Check for ISSUE_TEMPLATE format:**
+   - Look for issue templates in `.github/ISSUE_TEMPLATE/` or `.github/` directories
+   - If the current issue follows a template, identify which template
+   - Parse template structure to preserve required sections
+5. **Determine what to update:**
    - Ask what fields the user wants to update (title, body, labels, assignees, state)
    - Accept input for new values
-5. **Update the issue:**
-   - For body updates, respect ISSUE_TEMPLATE format if the original issue follows it
-   - Only use labels that already exist in the repository
-   - Only assign users who are valid repository collaborators
+   - If updating body and template exists, maintain template structure
+6. **Apply updates with validation:**
+   - For title: Use natural, descriptive language
+   - For body with template: Preserve template sections and formatting
+   - For body without template: Use clear, structured format
+   - For labels: Only use existing repository labels
+   - For assignees: Only assign valid repository collaborators
    - Use `gh issue edit` to apply changes
-6. **Confirm changes:**
-   - Show a summary of all updates before applying
+7. **Confirm and display results:**
+   - Show summary of all updates made
    - Display success message with link to updated issue
 
 For the issue title:
@@ -43,6 +51,12 @@ For the issue body (when using ISSUE_TEMPLATE format):
 - Preserve required sections and formatting
 - Update only the sections being changed
 - Maintain template sections
+
+For the issue body (custom format):
+- Include clear problem statement or feature details
+- Add relevant context from the update
+- Keep it structured and actionable
+- Maintain existing formatting style when possible
 
 For labels and assignees:
 - Only add labels that already exist in the repository
